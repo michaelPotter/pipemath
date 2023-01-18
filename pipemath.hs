@@ -1,7 +1,7 @@
-import Text.Read
-import System.Environment
-import System.IO
-import System.Exit
+import Text.Read (readMaybe)
+import System.Environment (getArgs)
+import System.IO (hPutStrLn, stderr)
+import System.Exit (exitFailure)
 
 main :: IO ()
 main = do
