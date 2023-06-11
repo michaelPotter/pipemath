@@ -29,6 +29,7 @@ failProgram s = hPutStrLn stderr s >> exitFailure
 
 type Eqn = ([Float] -> [Float])
 
+-- TODO could support piping within the given string... e.g. "*2 | avg"
 parseEquation :: String -> Either String Eqn
 parseEquation text = go $ tokenize text
     where
@@ -45,6 +46,7 @@ parseEquation text = go $ tokenize text
         -- Aggregate
         go ["sum"]  = Right $ \x -> [ sum x ]
         go ["avg"]  = Right $ \x -> [ sum x / fromIntegral (length x) ]
+        -- TODO add median?
         -- Rounding
         go ["round"]   = Right (map $ fromIntegral . round)
         go ["floor"]   = Right (map $ fromIntegral . floor)
